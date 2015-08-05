@@ -15,7 +15,9 @@ var button = buttons.ActionButton({
 });
 
 function handleClick(state) {
-    tabs.open("http://www.mozilla.org/");
+    require("sdk/tabs").activeTab.attach({
+        contentScript: 'document.body.style.border = "5px solid red";'
+    });
 }
 
 // a dummy function, to show how tests work.
