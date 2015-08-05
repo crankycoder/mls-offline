@@ -15,9 +15,10 @@ var button = buttons.ActionButton({
 });
 
 function handleClick(state) {
-    require("sdk/tabs").activeTab.attach({
-        contentScript: 'document.body.style.border = "5px solid red";'
+    var worker = tabs.activeTab.attach({
+        contentScriptFile: self.data.url("my-script.js")
     });
+    worker.port.emit("drawBorder", "red");
 }
 
 // a dummy function, to show how tests work.
