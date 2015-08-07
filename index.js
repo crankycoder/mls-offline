@@ -1,7 +1,8 @@
 var self = require('sdk/self');
-
+var data = require("sdk/self").data;
 var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
+var pageMod = require("sdk/page-mod");
 
 var button = buttons.ActionButton({
     id: "mozilla-link",
@@ -14,10 +15,30 @@ var button = buttons.ActionButton({
     onClick: handleClick
 });
 
+
+var pageMod = require("sdk/page-mod");
+pageMod.PageMod({
+      include: "*",
+      contentScriptWhen: "start",
+      contentScriptFile: data.url("geo-script.js"),
+      contentScriptOptions: {
+          showOptions: true
+      }
+});
+
+
 function handleClick(state) {
     var worker = tabs.activeTab.attach({
         contentScriptFile: self.data.url("my-script.js")
     });
+
+    /*
+     * TODO: we want to toggle the 'enabled' state of this addon and
+     * save it persistently.
+     *
+     * TODO: we want to clobber
+     * navigator.geolocation.getCurrentPosition
+     */
     worker.port.emit("drawBorder", "red");
 }
 
