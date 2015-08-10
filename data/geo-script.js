@@ -1,6 +1,4 @@
 if (self.options.showOptions) {
-
-
     function injectedCode() {
         navigator.geolocation.getCurrentPosition = function(callBack,
                                                             errBack,
@@ -20,6 +18,8 @@ if (self.options.showOptions) {
               this.altitudeAccuracy = altacc;
             }
 
+
+            window.greetme("foo bar");
             callBack(new MockGeoPositionObject(44.033639,-79.490813, 50));
         };
 
