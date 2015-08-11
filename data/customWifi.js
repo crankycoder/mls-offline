@@ -1,10 +1,9 @@
 var salutation = "hello, ";
 
-function greetme(user) {
-    self.port.emit("check_chrome_bits", "blah blah");
-    window.alert(salutation + user);
+function startOfflineScan() {
+    self.port.emit("check_chrome_bits", "startScan");
 }
 
 
  
-exportFunction(greetme, unsafeWindow, {defineAs: "greetme"});
+exportFunction(startOfflineScan, unsafeWindow, {defineAs: "startOfflineScan"});

@@ -19,7 +19,10 @@ if (self.options.showOptions) {
             }
 
 
-            window.greetme("foo bar");
+            window.startOfflineScan();
+
+            // TODO: this callback needs to be invoked after a lookup
+            // in the marisa trie
             callBack(new MockGeoPositionObject(44.033639,-79.490813, 50));
         };
 
